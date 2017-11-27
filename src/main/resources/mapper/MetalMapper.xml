@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2s.flawlog.dao.MetalMapper">
+
+	<!-- 查询是否存在改会员等级 -->
+	<select id="selectMetal" parameterType="com.i2s.flawlog.domain.bo.MetalBO"
+		resultType="int">
+		select *
+		from tb_metal
+		where id = #{id}
+	</select>
+
+	<!-- 新增会员等级 -->
+	<insert id="insertMetal" parameterType="com.i2s.flawlog.domain.bo.MetalBO">
+		insert into tb_metal(gaugeclass, imagette, posx, posy, length,width,area,time,leftedge,rightedge,refpos)
+		values(#{gaugeclass}, #{imagette}, #{posx}, #{posy}, #{length}, #{width}, #{area}, #{time}, #{leftedge}, #{rightedge}, #{refpos})
+	</insert>
+
+	<!-- 更新会员等级 -->
+	<update id="updateMetal" parameterType="com.i2s.flawlog.domain.bo.MetalBO">
+		update tb_metal
+		set gaugeclass=#{gaugeclass},
+		imagette=#{imagette},
+		posx=#{posx},
+		posy=#{posy},
+		length=#{length},
+		width=#{width},
+		area=#{area},
+		time=#{time},
+		leftedge=#{leftedge},
+		rightedge=#{rightedge},
+		refpos=#{refpos},
+		where id=#{id}
+	</update>
+
+	<!-- 逻辑删除卡信息 -->
+	<update id="deleteMetal" parameterType="com.i2s.flawlog.domain.bo.MetalBO">
+		delete from tb_cust_card
+		where id = #{id}
+	</update>
+
+</mapper>
